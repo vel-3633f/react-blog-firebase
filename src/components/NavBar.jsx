@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,22 +8,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = ({ isAuth }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   console.log(isAuth);
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
-        <a
-          href="/"
-          aria-label="Company"
-          title="Company"
-          className="inline-flex items-center"
-        >
+        <Link to="/" className="inline-flex items-center">
           <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
             blog
           </span>
-        </a>
-        <ul className="flex items-center hidden space-x-8 lg:flex">
+        </Link>
+        <ul className="flex items-center space-x-8 lg:flex">
           <li>
             <Link
               to="/"
@@ -33,28 +28,32 @@ const NavBar = ({ isAuth }) => {
               Home
             </Link>
           </li>
-          <li>
-            <Link
-              to="/createpost"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              <FontAwesomeIcon icon={faFilePen} className="mr-1" />
-              Post
-            </Link>
-          </li>
-          <li>
-            {isAuth ? (
-              <Link
-                to="/logout"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                <FontAwesomeIcon
-                  icon={faArrowRightFromBracket}
-                  className="mr-1"
-                />
-                Logout
-              </Link>
-            ) : (
+          {isAuth ? (
+            <>
+              <li>
+                <Link
+                  to="/createpost"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  <FontAwesomeIcon icon={faFilePen} className="mr-1" />
+                  Post
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/logout"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowRightFromBracket}
+                    className="mr-1"
+                  />
+                  Logout
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li>
               <Link
                 to="/login"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -65,10 +64,10 @@ const NavBar = ({ isAuth }) => {
                 />
                 Login
               </Link>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
-        <div className="lg:hidden">
+        {/* <div className="lg:hidden">
           <button
             aria-label="Open Menu"
             title="Open Menu"
@@ -153,7 +152,7 @@ const NavBar = ({ isAuth }) => {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

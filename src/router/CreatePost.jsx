@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
-const CreatePost = () => {
+const CreatePost = ({isAuth}) => {
   const [title, setTitle] = useState("");
   const [postText, setPostText] = useState("");
   const navigate = useNavigate();
@@ -19,6 +19,12 @@ const CreatePost = () => {
     });
     navigate("/")
   };
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login")
+    }
+  })
 
   return (
     <div className="w-screen min-h-screen bg-gray-200">
