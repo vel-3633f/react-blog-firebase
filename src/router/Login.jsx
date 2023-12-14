@@ -1,6 +1,9 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import logo from "../../public/img/logoTitle.svg";
+import google from "../../public/img/googleLogo.svg";
+
 const Login = ({ setIsAuth }) => {
   const navigate = useNavigate();
   const loginInWithGoogle = () => {
@@ -13,36 +16,27 @@ const Login = ({ setIsAuth }) => {
     });
   };
   return (
-    <div className="w-screen min-h-screen bg-gray-200">
-      <p>ログインして始める</p>
-      <button onClick={loginInWithGoogle}>Googleでログイン</button>
+    <div className="w-screen h-[calc(100vh-5rem)] bg-gray-200 flex justify-center items-center">
+      <div className="bg-white p-10 rounded-xl flex flex-col items-center">
+        <img src={logo} alt="logo" className="h-12 mb-5" />
+        <p className="text-gray-600 text-sm mb-5">
+          ここは情報共有プラットフォームです。
+          <br />
+          知見やアイデアをシェアしましょう。
+        </p>
+        <button
+          onClick={loginInWithGoogle}
+          className="border border-gray-200 px-5 py-2 rounded hover:text-gray-400 hover:bg-gray-100"
+        >
+          <img
+            src={google}
+            alt="google by Icons8"
+            className="w-7 inline-block"
+          />
+          <span className="font-bold ml-3">Login With Google</span>
+        </button>
+      </div>
     </div>
   );
 };
-
 export default Login;
-
-// import { signInWithPopup } from "firebase/auth";
-// import { auth, provider } from "../firebase";
-// import { useNavigate } from "react-router-dom";
-
-// const Login = ({ setIsAuth }) => {
-//   const navigate = useNavigate();
-//   const loginInWithGoogle = () => {
-//     signInWithPopup(auth, provider).then((result) => {
-//       localStorage.setItem("isAuth", true);
-//       setIsAuth(true);
-//       navigate("/");
-//     });
-//   };
-//   return (
-//     <div className="loginPage">
-//       <p>ログインして始める</p>
-//       <button className="loginButton" onClick={loginInWithGoogle}>
-//         Googleでログイン
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Login;

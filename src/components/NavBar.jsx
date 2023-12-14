@@ -6,23 +6,24 @@ import {
   faFilePen,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
+import Logo from "../../public/img/logoTitle.svg"
+
+const hoverStyle = "hover:-translate-y-1 hover:scale-110 transition"
 
 const NavBar = ({ isAuth }) => {
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
   console.log(isAuth);
   return (
-    <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="h-20 px-2 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-3">
       <div className="relative flex items-center justify-between">
         <Link to="/" className="inline-flex items-center">
-          <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-            blog
-          </span>
+          <img src={Logo} alt="titleAndLogo" className="h-12"/>
         </Link>
         <ul className="flex items-center space-x-8 lg:flex">
-          <li>
+          <li className={`${hoverStyle}`}>
             <Link
               to="/"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+              className="font-medium tracking-wide text-gray-700"
             >
               <FontAwesomeIcon icon={faHouse} className="mr-1" />
               Home
@@ -30,16 +31,16 @@ const NavBar = ({ isAuth }) => {
           </li>
           {isAuth ? (
             <>
-              <li>
+              <li className={`${hoverStyle}`}>
                 <Link
                   to="/createpost"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  className="font-medium tracking-wide text-white bg-blue-500 px-5 py-2 rounded transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
                   <FontAwesomeIcon icon={faFilePen} className="mr-1" />
                   Post
                 </Link>
               </li>
-              <li>
+              <li className={`${hoverStyle}`}>
                 <Link
                   to="/logout"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -53,7 +54,7 @@ const NavBar = ({ isAuth }) => {
               </li>
             </>
           ) : (
-            <li>
+            <li className={`${hoverStyle}`}>
               <Link
                 to="/login"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
