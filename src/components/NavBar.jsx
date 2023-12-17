@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../public/img/logoTitle.svg"
 
-const hoverStyle = "hover:-translate-y-1 hover:scale-110 transition"
+const hoverStyle = "transition text-gray-700 hover:text-gray-400"
 
 const NavBar = ({ isAuth }) => {
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +23,7 @@ const NavBar = ({ isAuth }) => {
           <li className={`${hoverStyle}`}>
             <Link
               to="/"
-              className="font-medium tracking-wide text-gray-700"
+              className="font-medium tracking-wide trantion"
             >
               <FontAwesomeIcon icon={faHouse} className="mr-1" />
               Home
@@ -34,7 +34,7 @@ const NavBar = ({ isAuth }) => {
               <li className={`${hoverStyle}`}>
                 <Link
                   to="/createpost"
-                  className="font-medium tracking-wide text-white bg-blue-500 px-5 py-2 rounded transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  className="font-medium tracking-wide text-white bg-blue-500 px-5 py-2 rounded transition-colors duration-200 hover:bg-blue-300"
                 >
                   <FontAwesomeIcon icon={faFilePen} className="mr-1" />
                   Post
@@ -43,7 +43,7 @@ const NavBar = ({ isAuth }) => {
               <li className={`${hoverStyle}`}>
                 <Link
                   to="/logout"
-                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                  className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
                   <FontAwesomeIcon
                     icon={faArrowRightFromBracket}
@@ -57,7 +57,7 @@ const NavBar = ({ isAuth }) => {
             <li className={`${hoverStyle}`}>
               <Link
                 to="/login"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 <FontAwesomeIcon
                   icon={faArrowRightFromBracket}
