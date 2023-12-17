@@ -6,18 +6,24 @@ import { useNavigate, Link } from "react-router-dom";
 const CreatePost = ({ isAuth }) => {
   const [title, setTitle] = useState("");
   const [postText, setPostText] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const createPost = async () => {
-    await addDoc(collection(db, "posts"), {
-      title: title,
-      postsText: postText,
-      author: {
-        username: auth.currentUser.displayName,
-        id: auth.currentUser.uid,
-      },
-    });
-    navigate("/");
+    if (title !== "" && postText !== "") {
+      await addDoc(collection(db, "posts"), {
+        title: title,
+        postsText: postText,
+        author: {
+          username: auth.currentUser.displayName,
+          id: auth.currentUser.uid,
+        },
+      });
+      setError("");
+      navigate("/");
+    } else {
+      setError("※入力に不備があります");
+    }
   };
 
   useEffect(() => {
@@ -49,12 +55,13 @@ const CreatePost = ({ isAuth }) => {
         </button>
       </div>
       <div className="">
+        <p className="h-20 text-red-500 font-bold">{error}</p>
         <input
           type="text"
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
-          className="h-12 w-[600px] text-3xl text-gray-500 font-bold bg-inherit mt-20 mb-5 focus:outline-none"
+          className="h-12 w-[600px] text-3xl text-gray-500 font-bold bg-inherit mb-5 focus:outline-none"
         />
         <textarea
           placeholder="Write in Markdown"

@@ -3,13 +3,12 @@ import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import NavBar from "../components/NavBar";
 
-const Home = ({isAuth}) => {
+const Home = ({ isAuth }) => {
   const [postLists, setPostLists] = useState([]);
 
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(collection(db, "posts"));
-      // console.log(data.docs.map((doc) => ({ ...doc.data() })));
       setPostLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
@@ -19,7 +18,6 @@ const Home = ({isAuth}) => {
     await deleteDoc(doc(db, "posts", id));
     window.location.href = "/";
   };
-  console.log(auth.currentUser);
 
   return (
     <>
