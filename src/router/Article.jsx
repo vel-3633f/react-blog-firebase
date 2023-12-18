@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
+import Loading from "../components/loading";
 
 const Article = () => {
   const params = useParams();
@@ -58,7 +59,7 @@ const Article = () => {
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
+          <Loading />
         )}
       </div>
     </>
