@@ -12,9 +12,8 @@ const hoverStyle = "transition text-gray-700 hover:text-gray-400"
 
 const NavBar = ({ isAuth }) => {
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(isAuth);
   return (
-    <div className="h-20 px-2 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-3">
+    <div className="h-20 bg-white px-5 py-5 max-w-screen">
       <div className="relative flex items-center justify-between">
         <Link to="/" className="inline-flex items-center">
           <img src={Logo} alt="titleAndLogo" className="h-12"/>

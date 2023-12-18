@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 const CreatePost = ({ isAuth }) => {
   const [title, setTitle] = useState("");
@@ -12,6 +13,7 @@ const CreatePost = ({ isAuth }) => {
   const createPost = async () => {
     if (title !== "" && postText !== "") {
       await addDoc(collection(db, "posts"), {
+        uid: uuidv4(),
         title: title,
         postsText: postText,
         author: {
