@@ -37,10 +37,3 @@ const Logout = ({ isAuth, setIsAuth }) => {
 };
 
 export default Logout;
-
-{
-  /* <div className="w-screen min-h-screen bg-gray-200">
-  <p>ログアウトする</p>
-  <button onClick={logout}>ログアウト</button>
-</div>; */
-}

@@ -9,7 +9,6 @@ import {
   doc,
   query,
 } from "firebase/firestore";
-
 import { useEffect, useState } from "react";
 import Loading from "../components/loading";
 
@@ -27,7 +26,6 @@ const Article = () => {
     getPosts();
   }, []);
 
-  console.log(articleData);
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "posts", id));

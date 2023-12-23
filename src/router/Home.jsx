@@ -36,7 +36,7 @@ const Home = ({ isAuth }) => {
                 >
                   <div className="flex">
                     <div className="bg-white rounded-xl w-24 h-24 mr-3 flex justify-center">
-                      <em-emoji id="bird" size="4em"></em-emoji>
+                      <em-emoji id={postList.emojiId} size="4em" />
                     </div>
                     <div>
                       <h1 className="font-bold text-2xl">{postList.title}</h1>
