@@ -2,7 +2,7 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { useState } from "react";
 
-const EmojiSelector = ({emojiId,setEmojiId}) => {
+const EmojiSelector = ({ emojiId, setEmojiId }) => {
   const [isOpened, setIsOpened] = useState(false);
 
   const emojiClick = (val) => {
@@ -13,7 +13,7 @@ const EmojiSelector = ({emojiId,setEmojiId}) => {
   return (
     <div className="relative">
       <div
-        className="bg-white rounded-xl w-24 h-24 mr-3 flex justify-center cursor-pointer"
+        className="bg-white rounded-xl w-24 h-24  flex justify-center cursor-pointer border-2 border-gray-300"
         onClick={() => setIsOpened((val) => !val)}
       >
         <em-emoji id={emojiId} size="4em" />
@@ -30,5 +30,6 @@ const EmojiSelector = ({emojiId,setEmojiId}) => {
     </div>
   );
 };
+
 
 export default EmojiSelector;

@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import EmojiSelector from "../components/EmojiSelector";
+import CreateNavBar from "../components/CreateNavBar";
+import CreateSideMenu from "../components/CreateSideMenu";
 
 const CreatePost = ({ isAuth }) => {
   const [title, setTitle] = useState("");
   const [postText, setPostText] = useState("");
   const [error, setError] = useState("");
   const [emojiId, setEmojiId] = useState("star-struck");
+  const [isSideOpen, setIsSideOpen] = useState(false);
   const navigate = useNavigate();
 
   const createPost = async () => {
@@ -40,28 +42,8 @@ const CreatePost = ({ isAuth }) => {
 
   return (
     <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center">
-      <div className="flex justify-between w-screen h-20 items-center px-5">
-        <Link to="/" className="font-medium tracking-wide text-gray-700">
-          ←
-        </Link>
-        <div>
-          <button
-            onClick={createPost}
-            className="
-          font-medium
-          tracking-wide
-          text-white
-          bg-blue-500
-          px-5
-          py-2
-          rounded
-          transition-colors
-          hover:bg-blue-200"
-          >
-            投稿する
-          </button>
-        </div>
-      </div>
+      <CreateSideMenu emojiId={emojiId} setEmojiId={setEmojiId} isSideOpen={isSideOpen} setIsSideOpen={setIsSideOpen} />
+      <CreateNavBar createPost={createPost} setIsSideOpen={setIsSideOpen} />
       <div className="flex">
         <div>
           <p className="h-20 text-red-500 font-bold">{error}</p>
@@ -82,12 +64,9 @@ const CreatePost = ({ isAuth }) => {
             ※ ルールを守って投稿しましょう
           </p>
         </div>
-        <div>
-          <EmojiSelector emojiId={emojiId} setEmojiId={setEmojiId} />
-        </div>
+        <div></div>
       </div>
     </div>
   );
 };
-
 export default CreatePost;
