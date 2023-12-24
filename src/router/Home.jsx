@@ -3,7 +3,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import NavBar from "../components/NavBar";
 import { Link } from "react-router-dom";
-import Loading from "../components/loading";
+import Loading from "../components/Loading";
 
 const Home = ({ isAuth }) => {
   const [postLists, setPostLists] = useState([]);
