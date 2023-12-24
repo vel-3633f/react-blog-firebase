@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import logo from "../../public/img/logoTitle.svg";
+import logo from "/img/logoTitle.svg";
 import NavBar from "../components/NavBar";
 
 const Logout = ({ isAuth, setIsAuth }) => {

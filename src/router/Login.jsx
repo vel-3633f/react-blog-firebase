@@ -1,8 +1,8 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import logo from "../../public/img/logoTitle.svg";
-import google from "../../public/img/googleLogo.svg";
+import logo from "/img/logoTitle.svg";
+import google from "/img/googleLogo.svg";
 import NavBar from "../components/NavBar";
 
 const Login = ({ isAuth, setIsAuth }) => {

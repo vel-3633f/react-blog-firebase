@@ -30,7 +30,7 @@ const Article = () => {
     await deleteDoc(doc(db, "posts", id));
     window.location.href = "/";
   };
-  // console.log(articleData.topics)
+
 
   return (
     <>
