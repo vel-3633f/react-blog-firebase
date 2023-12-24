@@ -9,10 +9,13 @@ import CreateSideMenu from "../components/CreateSideMenu";
 const CreatePost = ({ isAuth }) => {
   const [title, setTitle] = useState("");
   const [postText, setPostText] = useState("");
+  const [value, setValue] = useState([]);
   const [error, setError] = useState("");
   const [emojiId, setEmojiId] = useState("star-struck");
   const [isSideOpen, setIsSideOpen] = useState(false);
   const navigate = useNavigate();
+
+  console.log(value)
 
   const createPost = async () => {
     if (title !== "" && postText !== "") {
@@ -21,7 +24,7 @@ const CreatePost = ({ isAuth }) => {
         title: title,
         postsText: postText,
         emojiId: emojiId,
-        topics: [],
+        topics: [...value],
         author: {
           username: auth.currentUser.displayName,
           id: auth.currentUser.uid,
@@ -43,7 +46,7 @@ const CreatePost = ({ isAuth }) => {
 
   return (
     <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center">
-      <CreateSideMenu emojiId={emojiId} setEmojiId={setEmojiId} isSideOpen={isSideOpen} setIsSideOpen={setIsSideOpen} />
+      <CreateSideMenu emojiId={emojiId} setEmojiId={setEmojiId} isSideOpen={isSideOpen} setIsSideOpen={setIsSideOpen} value={value} setValue={setValue} />
       <CreateNavBar createPost={createPost} setIsSideOpen={setIsSideOpen} />
       <div className="flex">
         <div>
@@ -65,7 +68,6 @@ const CreatePost = ({ isAuth }) => {
             ※ ルールを守って投稿しましょう
           </p>
         </div>
-        <div></div>
       </div>
     </div>
   );
