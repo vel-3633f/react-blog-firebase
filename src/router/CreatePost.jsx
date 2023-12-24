@@ -21,6 +21,7 @@ const CreatePost = ({ isAuth }) => {
         title: title,
         postsText: postText,
         emojiId: emojiId,
+        topics: [],
         author: {
           username: auth.currentUser.displayName,
           id: auth.currentUser.uid,

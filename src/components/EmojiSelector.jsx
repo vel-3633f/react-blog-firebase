@@ -13,10 +13,15 @@ const EmojiSelector = ({ emojiId, setEmojiId }) => {
   return (
     <div className="relative">
       <div
-        className="bg-white rounded-xl w-24 h-24  flex justify-center cursor-pointer border-2 border-gray-300"
+        className="bg-white rounded-xl  flex items-center cursor-pointer border-2 border-gray-200 overflow-hidden duration-100 hover:bg-slate-100"
         onClick={() => setIsOpened((val) => !val)}
       >
-        <em-emoji id={emojiId} size="4em" />
+        <div className="bg-slate-200 w-[75px] pl-[12px] mr-5">
+          <em-emoji id={emojiId} size="3em" />
+        </div>
+        <div>
+          <p>アイキャッチ絵文字を変更</p>
+        </div>
       </div>
       {isOpened && (
         <div className="absolute top-20">
@@ -30,6 +35,5 @@ const EmojiSelector = ({ emojiId, setEmojiId }) => {
     </div>
   );
 };
-
 
 export default EmojiSelector;
