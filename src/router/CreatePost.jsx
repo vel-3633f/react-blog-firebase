@@ -5,17 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import CreateNavBar from "../components/CreateNavBar";
 import CreateSideMenu from "../components/CreateSideMenu";
+import Editor from "../components/Editor";
 
 const CreatePost = ({ isAuth }) => {
   const [title, setTitle] = useState("");
-  const [postText, setPostText] = useState("");
+  const [postText, setPostText] = useState("Write Markdown");
   const [value, setValue] = useState([]);
   const [error, setError] = useState("");
   const [emojiId, setEmojiId] = useState("star-struck");
   const [isSideOpen, setIsSideOpen] = useState(false);
   const navigate = useNavigate();
 
-  console.log(value)
+  console.log(value);
 
   const createPost = async () => {
     if (title !== "" && postText !== "") {
@@ -46,7 +47,14 @@ const CreatePost = ({ isAuth }) => {
 
   return (
     <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center">
-      <CreateSideMenu emojiId={emojiId} setEmojiId={setEmojiId} isSideOpen={isSideOpen} setIsSideOpen={setIsSideOpen} value={value} setValue={setValue} />
+      <CreateSideMenu
+        emojiId={emojiId}
+        setEmojiId={setEmojiId}
+        isSideOpen={isSideOpen}
+        setIsSideOpen={setIsSideOpen}
+        value={value}
+        setValue={setValue}
+      />
       <CreateNavBar createPost={createPost} setIsSideOpen={setIsSideOpen} />
       <div className="flex">
         <div>
@@ -58,17 +66,13 @@ const CreatePost = ({ isAuth }) => {
             value={title}
             className="h-12 w-[600px] text-3xl text-gray-500 font-bold bg-inherit mb-5 focus:outline-none"
           />
-          <textarea
-            placeholder="Write in Markdown"
-            onChange={(e) => setPostText(e.target.value)}
-            value={postText}
-            className="w-[600px] h-[400px] rounded block resize-none p-5"
-          ></textarea>
+          <Editor postText={postText} setPostText={setPostText} />
           <p className="my-3 w-[600px] text-gray-400 text-xs">
             ※ ルールを守って投稿しましょう
           </p>
         </div>
       </div>
+      
     </div>
   );
 };

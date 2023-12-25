@@ -24,7 +24,7 @@ const EmojiSelector = ({ emojiId, setEmojiId }) => {
         </div>
       </div>
       {isOpened && (
-        <div className="absolute top-20">
+        <div className="absolute top-20 z-10">
           <Picker
             data={data}
             onEmojiSelect={emojiClick}
