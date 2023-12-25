@@ -1,16 +1,43 @@
-import { useState } from "react";
-import SimpleMde from "react-simplemde-editor";
+import { useMemo } from "react";
+import { SimpleMdeReact } from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
+import "zenn-content-css";
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
-export const Editor = ({postText,setPostText}) => {
-  const [markdownValue, setMarkdownValue] = useState();
+const markdown = `Just a link: www.nasa.gov.`
 
+
+
+export const Editor = ({ postText, setPostText }) => {
   const onChange = (value) => {
     setPostText(value);
-    console.log(value)
+    console.log(value);
   };
+  const autofocusNoSpellcheckerOptions = useMemo(() => {
+    return {
+      autofocus: true,
+      spellChecker: false,
+      toolbar: [
+        "italic",
+        
+    ]
+    };
+  }, []);
 
-  return <SimpleMde value={postText} onChange={onChange} className="w-[600px]"/>;
+  return (
+    <div>
+      <SimpleMdeReact
+        options={autofocusNoSpellcheckerOptions}
+        value={postText}
+        onChange={onChange}
+      />
+      <div className="znc">
+      <Markdown remarkPlugins={[remarkGfm]}>{postText}</Markdown>
+      </div>
+    </div>
+      
+  );
 };
 
 export default Editor;

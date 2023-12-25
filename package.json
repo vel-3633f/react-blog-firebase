@@ -28,9 +28,12 @@
     "marked": "^11.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.20.1",
     "react-simplemde-editor": "^5.2.0",
-    "uuid": "^9.0.1"
+    "remark-gfm": "^4.0.0",
+    "uuid": "^9.0.1",
+    "zenn-content-css": "^0.1.150"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
