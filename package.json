@@ -33,7 +33,8 @@
     "react-simplemde-editor": "^5.2.0",
     "remark-gfm": "^4.0.0",
     "uuid": "^9.0.1",
-    "zenn-content-css": "^0.1.150"
+    "zenn-content-css": "^0.1.150",
+    "zenn-markdown-html": "^0.1.150"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

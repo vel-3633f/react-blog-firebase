@@ -5,10 +5,6 @@ import "zenn-content-css";
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
-const markdown = `Just a link: www.nasa.gov.`
-
-
-
 export const Editor = ({ postText, setPostText }) => {
   const onChange = (value) => {
     setPostText(value);
@@ -19,8 +15,14 @@ export const Editor = ({ postText, setPostText }) => {
       autofocus: true,
       spellChecker: false,
       toolbar: [
+        "bold",
         "italic",
-        
+        "heading-1",
+        "heading-2",
+        "heading-3",
+        "unordered-list",
+        "ordered-list",
+        "strikethrough"
     ]
     };
   }, []);
