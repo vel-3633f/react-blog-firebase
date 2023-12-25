@@ -3,7 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import FixedTags from "./FixedTags";
 
-const CreateSideMenu = ({ emojiId, setEmojiId, isSideOpen, setIsSideOpen }) => {
+const CreateSideMenu = ({
+  emojiId,
+  setEmojiId,
+  isSideOpen,
+  setIsSideOpen,
+  value,
+  setValue,
+}) => {
   const bgMenuStyle = isSideOpen ? "bg-opacity-50" : "bg-opacity-0 invisible";
   const menuStyle = isSideOpen ? "translate-x-0 " : "translate-x-full";
 
@@ -23,8 +30,11 @@ const CreateSideMenu = ({ emojiId, setEmojiId, isSideOpen, setIsSideOpen }) => {
           }}
         />
         <EmojiSelector emojiId={emojiId} setEmojiId={setEmojiId} />
-        <h1 className="text-gray-400 pt-10 mb-5"><span className="font-bold mr-3 text-black text-xl">トピック</span>関連する技術や用語などを指定しましょう</h1>
-        <FixedTags />
+        <h1 className="text-gray-400 pt-10 mb-5">
+          <span className="font-bold mr-3 text-black text-xl">トピック</span>
+          関連する技術や用語などを指定しましょう
+        </h1>
+        <FixedTags value={value} setValue={setValue} />
       </div>
     </>
   );

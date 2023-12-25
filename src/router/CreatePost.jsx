@@ -72,7 +72,6 @@ const CreatePost = ({ isAuth }) => {
           </p>
         </div>
       </div>
-      
     </div>
   );
 };

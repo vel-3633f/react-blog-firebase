@@ -11,6 +11,8 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const Article = () => {
   const params = useParams();
@@ -30,7 +32,6 @@ const Article = () => {
     await deleteDoc(doc(db, "posts", id));
     window.location.href = "/";
   };
-
 
   return (
     <>
@@ -52,7 +53,11 @@ const Article = () => {
                     </div>
                   ))}
                 </div>
-                <div>{articleData.postsText}</div>
+                <div className="znc">
+                  <Markdown remarkPlugins={[remarkGfm]}>
+                    {articleData.postsText}
+                  </Markdown>
+                </div>
               </div>
               <div className="w-[20vw] bg-white h-56 p-5 rounded-2xl flex flex-col items-center">
                 <p className="font-bold mb-5">{articleData.author.username}</p>

@@ -3,9 +3,8 @@ import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function FixedTags() {
+export default function FixedTags({value, setValue}) {
   const fixedOptions = [];
-  const [value, setValue] = useState([]);
   const [error, setError] = useState("");
 
   return (
