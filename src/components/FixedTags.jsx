@@ -3,7 +3,7 @@ import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function FixedTags({value, setValue}) {
+export default function FixedTags({ value, setValue }) {
   const fixedOptions = [];
   const [error, setError] = useState("");
 
@@ -55,8 +55,8 @@ const topicSummary = [
   {
     name: "Angular",
   },
-  { name: "Frontend:" },
-  { name: "Backend:" },
+  { name: "Frontend" },
+  { name: "Backend" },
   { name: "API" },
   { name: "AJAX" },
   {
