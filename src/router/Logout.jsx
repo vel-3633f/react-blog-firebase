@@ -4,20 +4,18 @@ import { useNavigate } from "react-router-dom";
 import logo from "/img/logoTitle.svg";
 import NavBar from "../components/NavBar";
 
-const Logout = ({ isAuth, setIsAuth }) => {
+const Logout = () => {
   const navigate = useNavigate();
 
   const logout = () => {
     //Googleでログアウト
     signOut(auth).then(() => {
-      localStorage.clear();
-      setIsAuth(false);
       navigate("/login");
     });
   };
   return (
     <>
-      <NavBar isAuth={isAuth} />
+      <NavBar />
       <div className="w-screen h-[calc(100vh-5rem)] bg-gray-200 flex justify-center items-center">
         <div className="bg-white p-10 rounded-xl flex flex-col items-center">
           <img src={logo} alt="logo" className="h-12 mb-5" />

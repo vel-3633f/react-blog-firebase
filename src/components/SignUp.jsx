@@ -1,28 +1,29 @@
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../firebase";
-import { useNavigate } from "react-router-dom";
-import logo from "/img/logoTitle.svg";
-import google from "/img/googleLogo.svg";
-import NavBar from "../components/NavBar";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
+import NavBar from "./NavBar";
 
-const Login = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const loginInWithGoogle = () => {
-    //Googleでログイン
-    signInWithPopup(auth, provider).then(() => {
-      navigate("/");
-    });
-  };
+  const [error, setError] = useState("");
 
-  const loginWithEmail = (event) => {
-    event.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {})
+  const navigate = useNavigate();
+
+  const Register = async () => {
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigate("/");
+      })
       .catch((error) => {
-        console.log(error.message);
+        if (
+          error.message ==
+          "Firebase: Password should be at least 6 characters (auth/weak-password)."
+        ) {
+          setError("パスワードは6文字以上にしてください");
+        }
       });
   };
 
@@ -36,27 +37,6 @@ const Login = () => {
   return (
     <>
       <NavBar />
-      <div className="w-screen h-[calc(100vh-5rem)] bg-gray-200 flex justify-center items-center">
-        <div className="bg-white p-10 rounded-xl flex flex-col items-center">
-          <img src={logo} alt="logo" className="h-12 mb-5" />
-          <p className="text-gray-600 text-sm mb-5">
-            ここは情報共有プラットフォームです。
-            <br />
-            知見やアイデアをシェアしましょう。
-          </p>
-          <button
-            onClick={loginInWithGoogle}
-            className="border border-gray-200 px-5 py-2 rounded hover:text-gray-400 hover:bg-gray-100"
-          >
-            <img
-              src={google}
-              alt="google by Icons8"
-              className="w-7 inline-block"
-            />
-            <span className="font-bold ml-3">Login With Google</span>
-          </button>
-        </div>
-      </div>
       <div className="w-full max-w-xs">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
@@ -94,15 +74,15 @@ const Login = () => {
                 handleChangePassword(event);
               }}
             />
-            {/* <p className="text-red-500 text-xs italic">{error}</p> */}
+            <p className="text-red-500 text-xs italic">{error}</p>
           </div>
           <div className="flex items-center justify-between">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
-              onClick={loginWithEmail}
+              onClick={Register}
             >
-              ログイン
+              新規登録
             </button>
           </div>
         </form>
@@ -110,4 +90,5 @@ const Login = () => {
     </>
   );
 };
-export default Login;
+
+export default SignUp;

@@ -6,17 +6,17 @@ import { v4 as uuidv4 } from "uuid";
 import CreateNavBar from "../components/CreateNavBar";
 import CreateSideMenu from "../components/CreateSideMenu";
 import Editor from "../components/Editor";
+import { useAuthContext } from "../context/AuthContext";
 
-const CreatePost = ({ isAuth }) => {
+const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [postText, setPostText] = useState("Write Markdown");
   const [value, setValue] = useState([]);
   const [error, setError] = useState("");
   const [emojiId, setEmojiId] = useState("star-struck");
   const [isSideOpen, setIsSideOpen] = useState(false);
+  const { user } = useAuthContext();
   const navigate = useNavigate();
-
-  console.log(value);
 
   const createPost = async () => {
     if (title !== "" && postText !== "") {
@@ -40,10 +40,10 @@ const CreatePost = ({ isAuth }) => {
   };
 
   useEffect(() => {
-    if (!isAuth) {
+    if (!user) {
       navigate("/login");
     }
-  });
+  }, []);
 
   return (
     <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center">

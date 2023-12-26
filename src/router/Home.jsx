@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 
-const Home = ({ isAuth }) => {
+const Home = () => {
   const [postLists, setPostLists] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,12 +18,10 @@ const Home = ({ isAuth }) => {
     getPosts();
   }, []);
 
-  console.log(postLists);
-
   return (
     <>
       <div className="w-screen min-h-screen bg-blue-100">
-        <NavBar isAuth={isAuth} />
+        <NavBar />
         <h1 className="font-bold text-4xl text-center py-10">Articles</h1>
         {isLoading ? (
           <div className="grid grid-cols-2 w-3/4 mx-auto">

@@ -7,10 +7,12 @@ import {
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "/img/logoTitle.svg";
+import { useAuthContext } from "../context/AuthContext";
 
 const hoverStyle = "transition text-gray-700 hover:text-gray-400";
 
-const NavBar = ({ isAuth }) => {
+const NavBar = () => {
+  const { user } = useAuthContext();
   return (
     <div className="h-20 bg-white px-5 py-5 max-w-screen">
       <div className="relative flex items-center justify-between">
@@ -24,7 +26,7 @@ const NavBar = ({ isAuth }) => {
               Home
             </Link>
           </li>
-          {isAuth ? (
+          {user ? (
             <>
               <li className={`${hoverStyle}`}>
                 <Link
@@ -49,18 +51,32 @@ const NavBar = ({ isAuth }) => {
               </li>
             </>
           ) : (
-            <li className={`${hoverStyle}`}>
-              <Link
-                to="/login"
-                className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                <FontAwesomeIcon
-                  icon={faArrowRightFromBracket}
-                  className="mr-1"
-                />
-                Login
-              </Link>
-            </li>
+            <>
+              <li className={`${hoverStyle}`}>
+                <Link
+                  to="/login"
+                  className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowRightFromBracket}
+                    className="mr-1"
+                  />
+                  Login
+                </Link>
+              </li>
+              <li className={`${hoverStyle}`}>
+                <Link
+                  to="/signUp"
+                  className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowRightFromBracket}
+                    className="mr-1"
+                  />
+                  Sign Up
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
