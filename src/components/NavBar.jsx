@@ -5,6 +5,7 @@ import {
   faHouse,
   faFilePen,
   faArrowRightFromBracket,
+  faNoteSticky
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "/img/logoTitle.svg";
 import { useAuthContext } from "../context/AuthContext";
@@ -14,7 +15,7 @@ const hoverStyle = "transition text-gray-700 hover:text-gray-400";
 const NavBar = () => {
   const { user } = useAuthContext();
   return (
-    <div className="h-20 bg-white px-5 py-5 max-w-screen">
+    <div className="h-20 bg-white px-10 py-5 max-w-screen">
       <div className="relative flex items-center justify-between">
         <Link to="/" className="inline-flex items-center">
           <img src={Logo} alt="titleAndLogo" className="h-12" />
@@ -66,14 +67,14 @@ const NavBar = () => {
               </li>
               <li className={`${hoverStyle}`}>
                 <Link
-                  to="/signUp"
+                  to="/signup"
                   className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
                   <FontAwesomeIcon
-                    icon={faArrowRightFromBracket}
-                    className="mr-1"
+                    icon={faNoteSticky}
+                    className="mr-2"
                   />
-                  Sign Up
+                  SignUp
                 </Link>
               </li>
             </>
