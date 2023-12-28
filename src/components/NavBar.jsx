@@ -5,7 +5,8 @@ import {
   faHouse,
   faFilePen,
   faArrowRightFromBracket,
-  faNoteSticky
+  faNoteSticky,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "/img/logoTitle.svg";
 import { useAuthContext } from "../context/AuthContext";
@@ -29,6 +30,18 @@ const NavBar = () => {
           </li>
           {user ? (
             <>
+              <li className={`${hoverStyle}`}>
+                <Link
+                  to="/mypage"
+                  className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className="mr-1"
+                  />
+                  MyPage
+                </Link>
+              </li>
               <li className={`${hoverStyle}`}>
                 <Link
                   to="/createpost"
@@ -70,10 +83,7 @@ const NavBar = () => {
                   to="/signup"
                   className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
-                  <FontAwesomeIcon
-                    icon={faNoteSticky}
-                    className="mr-2"
-                  />
+                  <FontAwesomeIcon icon={faNoteSticky} className="mr-2" />
                   SignUp
                 </Link>
               </li>

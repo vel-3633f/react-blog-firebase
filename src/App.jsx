@@ -8,6 +8,7 @@ import data from "@emoji-mart/data";
 import { init } from "emoji-mart";
 import Article from "./router/Article";
 import { AuthProvider } from "./context/AuthContext";
+import MyPage from "./router/MyPage";
 
 init({ data });
 
@@ -17,6 +18,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/article/:id" element={<Article />} />
           <Route path="/login" element={<Login />} />
