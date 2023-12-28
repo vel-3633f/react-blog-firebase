@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   collection,
   where,
@@ -18,6 +18,16 @@ import { Footer } from "../components/Footer";
 const Article = () => {
   const params = useParams();
   const [articleData, setArticleData] = useState(null);
+  const [isUser, setIsUser] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user?.uid === articleData?.author.id) {
+        setIsUser(true);
+      }
+    });
+    return () => unsubscribe();
+  }, [articleData]);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -40,7 +50,7 @@ const Article = () => {
         <NavBar />
         {articleData ? (
           <>
-            <div className="flex items-center flex-col py-10">
+            <div className="flex items-center flex-col py-10 min-h-screen">
               <em-emoji id={articleData.emojiId} size="4em" />
               <h1 className="text-4xl font-bold mb-10">{articleData.title}</h1>
               <div className="flex justify-evenly">
@@ -65,12 +75,24 @@ const Article = () => {
                   <p className="font-bold mb-5">
                     {articleData.author.username}
                   </p>
-                  <button
-                    className="bg-red-500 hover:bg-red-400 text-white rounded px-16 py-2"
-                    onClick={() => handleDelete(articleData.id)}
-                  >
-                    削除
-                  </button>
+                  {isUser ? (
+                    <>
+                      <button
+                      className="bg-blue-400 hover:bg-blue-300 text-white rounded px-16 py-2 mb-10"
+                      onClick={() => handleDelete(articleData.id)}
+                    >
+                      編集
+                    </button>
+                      <button
+                      className="bg-red-500 hover:bg-red-400 text-white rounded px-16 py-2"
+                      onClick={() => handleDelete(articleData.id)}
+                    >
+                      削除
+                    </button>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>
