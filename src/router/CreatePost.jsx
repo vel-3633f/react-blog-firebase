@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db, auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import CreateNavBar from "../components/CreateNavBar";
 import CreateSideMenu from "../components/CreateSideMenu";
@@ -15,7 +15,9 @@ const CreatePost = () => {
   const [error, setError] = useState("");
   const [emojiId, setEmojiId] = useState("star-struck");
   const [isSideOpen, setIsSideOpen] = useState(false);
+  const [isNew, setIsNew] = useState(true);
   const { user } = useAuthContext();
+  const params = useParams();
   const navigate = useNavigate();
 
   const createPost = async () => {
@@ -33,17 +35,54 @@ const CreatePost = () => {
       });
       setError("");
       navigate("/");
-      setEmojiId("star-struck");
+    } else {
+      setError("※入力に不備があります");
+    }
+  };
+
+  const updatePost = async () => {
+    if (title !== "" && postText !== "") {
+      const updateData = doc(db, "posts", params.id);
+      await updateDoc(updateData, {
+        title: title,
+        postsText: postText,
+        emojiId: emojiId,
+        topics: [...value],
+        author: {
+          username: auth.currentUser.displayName,
+          id: auth.currentUser.uid,
+        },
+      });
+
+      setError("");
+      navigate("/");
     } else {
       setError("※入力に不備があります");
     }
   };
 
   useEffect(() => {
+    if (params.id !== "new") {
+      setIsNew(false);
+      getPosts();
+    }
+  }, []);
+
+  useEffect(() => {
     if (!user) {
       navigate("/login");
     }
   }, []);
+
+  const getPosts = async () => {
+    const q = doc(db, "posts", params.id);
+    const data = (await getDoc(q)).data();
+    console.log("Data fetched:", data);
+    setTitle(data.title)
+    setEmojiId(data.emojiId)
+    setPostText(data.postsText)
+    setValue(data.topics)
+  };
 
   return (
     <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center">
@@ -55,7 +94,12 @@ const CreatePost = () => {
         value={value}
         setValue={setValue}
       />
-      <CreateNavBar createPost={createPost} setIsSideOpen={setIsSideOpen} />
+      <CreateNavBar
+        createPost={createPost}
+        updatePost={updatePost}
+        setIsSideOpen={setIsSideOpen}
+        isNew={isNew}
+      />
       <div className="flex">
         <div>
           <p className="h-20 text-red-500 font-bold">{error}</p>

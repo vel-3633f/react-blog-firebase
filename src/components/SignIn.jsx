@@ -5,13 +5,17 @@ import { useState } from "react";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const loginWithEmail = (event) => {
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then(() => {})
+      .then(() => {
+        setError("");
+      })
       .catch((error) => {
         console.log(error.message);
+        setError("間違っています");
       });
   };
 
@@ -60,7 +64,7 @@ const SignIn = () => {
               handleChangePassword(event);
             }}
           />
-          {/* <p className="text-red-500 text-xs italic">{error}</p> */}
+          <p className="text-red-500 text-xs">{error}</p>
         </div>
         <div className="flex items-center justify-between">
           <button

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { auth, db } from "../firebase";
 import {
@@ -19,6 +19,8 @@ const Article = () => {
   const params = useParams();
   const [articleData, setArticleData] = useState(null);
   const [isUser, setIsUser] = useState(false);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -43,6 +45,11 @@ const Article = () => {
     await deleteDoc(doc(db, "posts", id));
     window.location.href = "/";
   };
+
+  const handleEdit = (id) => {
+    navigate(`/createpost/${id}`)
+  };
+
 
   return (
     <>
@@ -79,7 +86,7 @@ const Article = () => {
                     <>
                       <button
                       className="bg-blue-400 hover:bg-blue-300 text-white rounded px-16 py-2 mb-10"
-                      onClick={() => handleDelete(articleData.id)}
+                      onClick={() => handleEdit(articleData.id)}
                     >
                       編集
                     </button>

@@ -30,12 +30,13 @@ const SignUp = () => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {})
       .catch((error) => {
-        setError(error.message);
         if (
           error.message ==
           "Firebase: Password should be at least 6 characters (auth/weak-password)."
         ) {
           setError("パスワードは6文字以上にしてください");
+        } else {
+          setError("エラーが発生しました");
         }
       });
     await updateProfile(auth.currentUser, {
@@ -121,7 +122,7 @@ const SignUp = () => {
                     handleChangePassword(event);
                   }}
                 />
-                <p className="text-red-500 text-xs italic">{error}</p>
+                <p className="text-red-500 text-xs">{error}</p>
               </div>
               <div className="flex items-center justify-between">
                 <button

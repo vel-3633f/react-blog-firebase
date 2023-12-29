@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const hoverButtonStyle =
   "hover:bg-white cursor-pointer transition duration-300 rounded-full";
 
-const CreateNavBar = ({ createPost, setIsSideOpen }) => {
+const CreateNavBar = ({ createPost,updatePost, setIsSideOpen, isNew }) => {
   return (
     <div className="flex justify-between w-screen h-20 items-center px-5">
       <Link
@@ -20,12 +20,21 @@ const CreateNavBar = ({ createPost, setIsSideOpen }) => {
           className={`mr-8 h-7 p-3 ${hoverButtonStyle}`}
           onClick={() => setIsSideOpen(true)}
         />
-        <button
-          onClick={createPost}
-          className="font-medium tracking-wide text-white bg-blue-500 px-5 py-2 rounded transition-colors hover:bg-blue-200"
-        >
-          投稿する
-        </button>
+        {isNew ? (
+          <button
+            onClick={createPost}
+            className="font-medium tracking-wide text-white bg-blue-500 px-5 py-2 rounded transition-colors hover:bg-blue-200"
+          >
+            投稿する
+          </button>
+        ) : (
+          <button
+            onClick={updatePost}
+            className="font-medium tracking-wide text-white bg-blue-500 px-5 py-2 rounded transition-colors hover:bg-blue-200"
+          >
+            編集完了
+          </button>
+        )}
       </div>
     </div>
   );

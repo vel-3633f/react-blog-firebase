@@ -10,7 +10,6 @@ export const Editor = ({ postText, setPostText }) => {
   const [isEditor, setIsEditor] = useState(true);
   const onChange = (value) => {
     setPostText(value);
-    console.log(value);
   };
   const autofocusNoSpellcheckerOptions = useMemo(() => {
     return {

@@ -44,7 +44,7 @@ const NavBar = () => {
               </li>
               <li className={`${hoverStyle}`}>
                 <Link
-                  to="/createpost"
+                  to="/createpost/new"
                   className="font-medium tracking-wide text-white bg-blue-500 px-5 py-2 rounded transition-colors duration-200 hover:bg-blue-300"
                 >
                   <FontAwesomeIcon icon={faFilePen} className="mr-1" />
