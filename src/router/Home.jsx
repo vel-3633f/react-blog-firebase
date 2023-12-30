@@ -26,7 +26,7 @@ const Home = () => {
         <h1 className="font-bold text-4xl text-center py-10">Articles</h1>
         {isLoading ? (
           <>
-            <div className="grid grid-cols-2 w-3/4 mx-auto">
+            <div className="grid grid-cols-1 w-3/4 mx-auto md:grid-cols-2">
               {postLists.map((postList) => {
                 return (
                   <Link

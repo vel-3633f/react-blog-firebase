@@ -10,14 +10,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "/img/logoTitle.svg";
 import { useAuthContext } from "../context/AuthContext";
+import Hamburger from "./Hamburger";
 
 const hoverStyle = "transition text-gray-700 hover:text-gray-400";
 
 const NavBar = () => {
   const { user } = useAuthContext();
   return (
-    <div className="h-20 bg-white px-10 py-5 max-w-screen">
-      <div className="relative flex items-center justify-between">
+    <div className="h-20 bg-white px-10 py-5 max-w-screen relative">
+      <div className="relative items-center justify-between hidden sm:flex">
         <Link to="/" className="inline-flex items-center">
           <img src={Logo} alt="titleAndLogo" className="h-12" />
         </Link>
@@ -35,10 +36,7 @@ const NavBar = () => {
                   to="/mypage"
                   className="font-medium tracking-wide transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
-                  <FontAwesomeIcon
-                    icon={faUser}
-                    className="mr-1"
-                  />
+                  <FontAwesomeIcon icon={faUser} className="mr-1" />
                   MyPage
                 </Link>
               </li>
@@ -91,6 +89,7 @@ const NavBar = () => {
           )}
         </ul>
       </div>
+      <Hamburger user={user} />
     </div>
   );
 };
