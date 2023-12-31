@@ -108,10 +108,10 @@ const CreatePost = () => {
             placeholder="Title"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
-            className="h-12 w-[600px] text-3xl text-gray-500 font-bold bg-inherit mb-5 focus:outline-none"
+            className="h-12 w-[80vw] sm:w-[600px] text-3xl text-gray-500 font-bold bg-inherit mb-5 focus:outline-none"
           />
           <Editor postText={postText} setPostText={setPostText} />
-          <p className="my-3 w-[600px] text-gray-400 text-xs">
+          <p className="my-3 sm:w-[600px] text-gray-400 text-xs">
             ※ ルールを守って投稿しましょう
           </p>
         </div>

@@ -20,7 +20,7 @@ const CreateSideMenu = ({
         className={`bg-slate-800  fixed w-screen h-screen transition duration-1000 z-10 ${bgMenuStyle}`}
       ></div>
       <div
-        className={`h-screen bg-white z-10 w-1/2 p-10 fixed transition duration-500 right-0 ${menuStyle}`}
+        className={`h-screen bg-white z-10 w-screen p-2 fixed transition duration-500 right-0 ${menuStyle} sm:w-1/2 sm:p-10`}
       >
         <FontAwesomeIcon
           icon={faXmark}

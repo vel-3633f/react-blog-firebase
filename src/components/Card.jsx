@@ -1,6 +1,6 @@
 const Card = ({ title, emojiId, name }) => {
   return (
-    <div className=" w-[300px] bg-white border border-gray-200 rounded-lg shadow">
+    <div className="w-[80vw] max-w-[300px] bg-white border border-gray-200 rounded-lg shadow sm:w-[300px]">
       <div className="bg-blue-100 py-5 flex justify-center items-center">
         <em-emoji id={emojiId} size="4em" />
       </div>

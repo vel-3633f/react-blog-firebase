@@ -32,18 +32,18 @@ export const Editor = ({ postText, setPostText }) => {
 
   return (
     <>
-      <div className="flex items-start">
-        <div className="overflow-x-hidden w-[60vw] rounded mr-5">
+      <div className="flex flex-col sm:items-start sm:flex-row">
+        <div className="overflow-x-hidden min-w-[95vw] sm:min-w-[65vw] rounded sm:mr-5">
           <div
-            className={`flex w-[60vw] transition duration-500 ${editorStyle}`}
+            className={`flex w-[95vw] sm:w-[65vw] transition duration-500 ${editorStyle}`}
           >
             <SimpleMdeReact
               options={autofocusNoSpellcheckerOptions}
               value={postText}
               onChange={onChange}
-              className="min-w-[60vw]"
+              className="min-w-[95vw] sm:min-w-[65vw]"
             />
-            <div className="znc min-w-[60vw] bg-white p-5">
+            <div className="znc min-w-[95vw] sm:min-w-[65vw] bg-white p-5">
               <Markdown remarkPlugins={[remarkGfm]}>{postText}</Markdown>
             </div>
           </div>

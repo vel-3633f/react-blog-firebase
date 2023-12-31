@@ -28,7 +28,7 @@ const Login = () => {
     <>
       <NavBar />
       <div className="w-screen h-[calc(100vh-5rem)] bg-gray-200 flex justify-center items-center">
-        <div className="bg-white py-10 px-20 rounded-xl flex flex-col items-center">
+        <div className="bg-white pb-3 pt-5 px-5 rounded-xl flex flex-col items-center sm:px-20 sm:py-10">
           <img src={logo} alt="logo" className="h-12 mb-5" />
           <p className="text-gray-600 text-sm mb-5">
             ここは情報共有プラットフォームです。

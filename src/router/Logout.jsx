@@ -16,8 +16,8 @@ const Logout = () => {
   return (
     <>
       <NavBar />
-      <div className="w-screen h-[calc(100vh-5rem)] bg-gray-200 flex justify-center items-center">
-        <div className="bg-white p-10 rounded-xl flex flex-col items-center">
+      <div className="w-screen h-[calc(100vh-5rem)] bg-gray-200 flex justify-center items-center px-3">
+        <div className="bg-white p-10 rounded-xl flex flex-col items-center ">
           <img src={logo} alt="logo" className="h-12 mb-5" />
           <p className="text-gray-600 text-sm mb-5">
             ログアウトをしたい場合、以下のボタンをクリック。

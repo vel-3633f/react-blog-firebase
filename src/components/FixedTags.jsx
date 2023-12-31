@@ -34,7 +34,7 @@ export default function FixedTags({ value, setValue }) {
             <Chip label={option.name} {...getTagProps({ index })} key={index} />
           ))
         }
-        style={{ width: 500 }}
+        style={{ width: 100+"%" }}
         renderInput={(params) => (
           <TextField {...params} placeholder="トピックを入力してください" />
         )}
