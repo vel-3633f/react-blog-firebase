@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./router/Home";
-import CreatePost from "./router/CreatePost";
-import Login from "./router/Login";
-import Logout from "./router/Logout";
-import SignUp from "./router/SignUp";
+import Home from "./views/Home";
+import CreatePost from "./views/CreatePost";
+import Login from "./views/Login";
+import Logout from "./views/Logout";
+import SignUp from "./views/SignUp";
 import data from "@emoji-mart/data";
 import { init } from "emoji-mart";
-import Article from "./router/Article";
+import Article from "./views/Article";
 import { AuthProvider } from "./context/AuthContext";
-import MyPage from "./router/MyPage";
+import MyPage from "./views/MyPage";
 
 init({ data });
 
