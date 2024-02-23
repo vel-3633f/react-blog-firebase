@@ -8,7 +8,7 @@ const SearchTopic = () => {
       <NavBar />
       <div className="p-10 place-center flex-col">
         <h1 className="font-bold text-lg mb-10">人気のトピック</h1>
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-2  sm:grid-cols-4 gap-5">
           {topicSummary.map((topic) => {
             return (
               <>
