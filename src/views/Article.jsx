@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { auth, db } from "../firebase";
 import {
@@ -20,7 +20,6 @@ const Article = () => {
   const [articleData, setArticleData] = useState(null);
   const [isUser, setIsUser] = useState(false);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -47,9 +46,8 @@ const Article = () => {
   };
 
   const handleEdit = (id) => {
-    navigate(`/createpost/${id}`)
+    navigate(`/createpost/${id}`);
   };
-
 
   return (
     <>
@@ -64,12 +62,13 @@ const Article = () => {
                 <div className="w-[95vw] md:w-[55vw] bg-white p-5 md:p-16 rounded-2xl leading-loose mb-5 md:mb-0 md:mr-10">
                   <div className="flex mb-10">
                     {articleData.topics.map((topic, index) => (
-                      <div
+                      <Link
+                        to={`/search/${topic}`}
                         key={index}
                         className="border-2 py-1 px-3 mx-1 rounded-full border-gray-300 text-sm"
                       >
-                        {topic.name}
-                      </div>
+                        {topic}
+                      </Link>
                     ))}
                   </div>
                   <div className="znc">
@@ -85,17 +84,17 @@ const Article = () => {
                   {isUser ? (
                     <>
                       <button
-                      className="bg-blue-400 hover:bg-blue-300 text-white rounded px-16 md:px-10 py-2 mb-10"
-                      onClick={() => handleEdit(articleData.id)}
-                    >
-                      編集
-                    </button>
+                        className="bg-blue-400 hover:bg-blue-300 text-white rounded px-16 md:px-10 py-2 mb-10"
+                        onClick={() => handleEdit(articleData.id)}
+                      >
+                        編集
+                      </button>
                       <button
-                      className="bg-red-500 hover:bg-red-400 text-white rounded px-16 md:px-10 py-2 mb-10"
-                      onClick={() => handleDelete(articleData.id)}
-                    >
-                      削除
-                    </button>
+                        className="bg-red-500 hover:bg-red-400 text-white rounded px-16 md:px-10 py-2 mb-10"
+                        onClick={() => handleDelete(articleData.id)}
+                      >
+                        削除
+                      </button>
                     </>
                   ) : (
                     <></>

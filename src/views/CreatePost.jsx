@@ -22,12 +22,17 @@ const CreatePost = () => {
 
   const createPost = async () => {
     if (title !== "" && postText !== "") {
+      const topicNames = [];
+      value.forEach((element) => {
+        topicNames.push(element.name);
+      });
+      console.log(topicNames);
       await addDoc(collection(db, "posts"), {
         uid: uuidv4(),
         title: title,
         postsText: postText,
         emojiId: emojiId,
-        topics: [...value],
+        topics: [...topicNames],
         author: {
           username: auth.currentUser.displayName,
           id: auth.currentUser.uid,
@@ -41,13 +46,17 @@ const CreatePost = () => {
   };
 
   const updatePost = async () => {
+    const topicNames = [];
+    value.forEach((element) => {
+      topicNames.push(element.name);
+    });
     if (title !== "" && postText !== "") {
       const updateData = doc(db, "posts", params.id);
       await updateDoc(updateData, {
         title: title,
         postsText: postText,
         emojiId: emojiId,
-        topics: [...value],
+        topics: [...topicNames],
         author: {
           username: auth.currentUser.displayName,
           id: auth.currentUser.uid,
@@ -77,11 +86,11 @@ const CreatePost = () => {
   const getPosts = async () => {
     const q = doc(db, "posts", params.id);
     const data = (await getDoc(q)).data();
-    console.log("Data fetched:", data);
-    setTitle(data.title)
-    setEmojiId(data.emojiId)
-    setPostText(data.postsText)
-    setValue(data.topics)
+    // console.log("Data fetched:", data);
+    setTitle(data.title);
+    setEmojiId(data.emojiId);
+    setPostText(data.postsText);
+    setValue(data.topics);
   };
 
   return (

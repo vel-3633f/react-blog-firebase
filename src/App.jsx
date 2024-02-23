@@ -5,10 +5,12 @@ import Login from "./views/Login";
 import Logout from "./views/Logout";
 import SignUp from "./views/SignUp";
 import data from "@emoji-mart/data";
+import SearchTopic from "./views/SearchTopic";
 import { init } from "emoji-mart";
 import Article from "./views/Article";
 import { AuthProvider } from "./context/AuthContext";
 import MyPage from "./views/MyPage";
+import TopicPage from "./views/TopicPage";
 
 init({ data });
 
@@ -24,6 +26,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/search" element={<SearchTopic />} />
+          <Route path="search/:topicName" element={<TopicPage />} />
         </Routes>
       </Router>
     </AuthProvider>

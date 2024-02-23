@@ -26,7 +26,7 @@ const Home = () => {
         <h1 className="font-bold text-4xl text-center py-10">Articles</h1>
         {isLoading ? (
           <>
-            <div className="grid grid-cols-1 w-3/4 mx-auto md:grid-cols-2">
+            <div className="grid grid-cols-1 w-11/12 sm:w-3/4 mx-auto md:grid-cols-2">
               {postLists.map((postList) => {
                 return (
                   <Link
@@ -39,10 +39,13 @@ const Home = () => {
                         <em-emoji id={postList.emojiId} size="4em" />
                       </div>
                       <div>
-                        <h1 className="font-bold text-2xl">{postList.title}</h1>
+                        <h1 className="font-bold text-lg sm:text-2xl">
+                          {postList.title}
+                        </h1>
                         <p className="font-bold text-sm">
                           {postList.author.username}
                         </p>
+                        <p className="font-bold text-sm">date</p>
                       </div>
                     </div>
                   </Link>

@@ -1,36 +1,27 @@
-import { useState, useEffect } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { auth, db } from "../firebase";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase";
+import Card from "../components/Card";
 import { Footer } from "../components/Footer";
 import Loading from "../components/Loading";
-import Card from "../components/Card";
 
-const MyPage = () => {
+const TopicPage = () => {
+  const urlParameters = useParams();
+  const topicName = urlParameters.topicName;
   const [postLists, setPostLists] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [userUid, setUserUid] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUserUid(user?.uid || null);
-    });
-
-    return () => unsubscribe();
-  }, []);
 
   useEffect(() => {
     const getPosts = async () => {
       try {
-        if (userUid) {
-          const q = query(
-            collection(db, "posts"),
-            where("author.id", "==", userUid)
-          );
-          const data = await getDocs(q);
-          setPostLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
+        const q = query(
+          collection(db, "posts"),
+          where("topics", "array-contains", topicName)
+        );
+        const data = await getDocs(q);
+        setPostLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
@@ -39,12 +30,14 @@ const MyPage = () => {
     };
 
     getPosts();
-  }, [userUid]);
+  }, []);
 
   return (
     <div className="w-screen min-h-screen bg-gray-100 flex flex-col">
       <NavBar />
-      <h1 className="font-bold text-4xl text-center py-10">Articles</h1>
+      <h1 className="font-bold text-4xl text-center py-10">
+        {topicName.toUpperCase()}
+      </h1>
       {isLoading ? (
         <>
           <div className="grid grid-cols-1 gap-3 mx-auto mb-10 sm:grid-cols-2 lg:grid-cols-3 min-h-screen">
@@ -67,4 +60,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default TopicPage;

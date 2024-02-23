@@ -2,9 +2,9 @@ import { useState } from "react";
 import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import topicSummary from "../data/topic";
 
 export default function FixedTags({ value, setValue }) {
-  const fixedOptions = [];
   const [error, setError] = useState("");
 
   return (
@@ -16,13 +16,9 @@ export default function FixedTags({ value, setValue }) {
         onChange={(event, newValue) => {
           try {
             if (newValue.length > 5) {
-              throw new Error("トピックは最大5つまで登録できます");
+              throw new Error("トピックは最大5つまでしか登録できません");
             }
-            setValue([
-              ...newValue.filter(
-                (option) => fixedOptions.indexOf(option) === -1
-              ),
-            ]);
+            setValue([...newValue]);
           } catch (e) {
             setError(e.message);
           }
@@ -34,7 +30,7 @@ export default function FixedTags({ value, setValue }) {
             <Chip label={option.name} {...getTagProps({ index })} key={index} />
           ))
         }
-        style={{ width: 100+"%" }}
+        style={{ width: 100 + "%" }}
         renderInput={(params) => (
           <TextField {...params} placeholder="トピックを入力してください" />
         )}
@@ -43,24 +39,3 @@ export default function FixedTags({ value, setValue }) {
     </div>
   );
 }
-
-const topicSummary = [
-  { name: "HTML" },
-  { name: "CSS" },
-  { name: "JavaScript" },
-  { name: "React.js" },
-  { name: "Vue.js" },
-  { name: "Express.js" },
-  { name: "Ruby on Rails" },
-  {
-    name: "Angular",
-  },
-  { name: "Frontend" },
-  { name: "Backend" },
-  { name: "API" },
-  { name: "AJAX" },
-  {
-    name: "Library",
-  },
-  { name: "Git" },
-];
