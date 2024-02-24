@@ -6,6 +6,7 @@ import { db } from "../firebase";
 import Card from "../components/Card";
 import { Footer } from "../components/Footer";
 import Loading from "../components/Loading";
+import { format } from "date-fns";
 
 const TopicPage = () => {
   const urlParameters = useParams();
@@ -47,6 +48,7 @@ const TopicPage = () => {
                   title={postList.title}
                   emojiId={postList.emojiId}
                   name={postList.author.username}
+                  date={format(postList.timeStamp.toDate(), "yyyy年MM月dd日")}
                 />
               </Link>
             ))}

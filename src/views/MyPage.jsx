@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import Loading from "../components/Loading";
 import Card from "../components/Card";
+import { format } from "date-fns";
 
 const MyPage = () => {
   const [postLists, setPostLists] = useState([]);
@@ -54,6 +55,7 @@ const MyPage = () => {
                   title={postList.title}
                   emojiId={postList.emojiId}
                   name={postList.author.username}
+                  date={format(postList.timeStamp.toDate(), "yyyy年MM月dd日")}
                 />
               </Link>
             ))}
