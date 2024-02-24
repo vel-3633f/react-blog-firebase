@@ -2,8 +2,7 @@ import { useState } from "react";
 import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import topicSummary from "../data/topic";
-
+import { topicNameOnly } from "../data/topic";
 export default function FixedTags({ value, setValue }) {
   const [error, setError] = useState("");
 
@@ -23,11 +22,11 @@ export default function FixedTags({ value, setValue }) {
             setError(e.message);
           }
         }}
-        options={topicSummary}
-        getOptionLabel={(option) => option.name}
+        options={topicNameOnly}
+        getOptionLabel={(option) => option}
         renderTags={(tagValue, getTagProps) =>
           tagValue.map((option, index) => (
-            <Chip label={option.name} {...getTagProps({ index })} key={index} />
+            <Chip label={option} {...getTagProps({ index })} key={index} />
           ))
         }
         style={{ width: 100 + "%" }}

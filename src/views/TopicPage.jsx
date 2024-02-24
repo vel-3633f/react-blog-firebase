@@ -40,7 +40,7 @@ const TopicPage = () => {
       </h1>
       {isLoading ? (
         <>
-          <div className="grid grid-cols-1 gap-3 mx-auto mb-10 sm:grid-cols-2 lg:grid-cols-3 min-h-screen">
+          <div className="grid grid-cols-1 gap-10 mx-auto mb-10 sm:grid-cols-2 lg:grid-cols-3 ">
             {postLists.map((postList) => (
               <Link to={`/article/${postList.uid}`} key={postList.id}>
                 <Card

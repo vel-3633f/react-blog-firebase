@@ -12,5 +12,13 @@ const topicSummary = [
   { name: "react", iconName: FaReact },
   { name: "vue.js", iconName: FaVuejs },
 ];
+const topicNameOnly = [
+  "html",
+  "css",
+  "javascript",
+  "typescript",
+  "react",
+  "vue.js",
+];
 
-export default topicSummary;
+export { topicSummary, topicNameOnly };

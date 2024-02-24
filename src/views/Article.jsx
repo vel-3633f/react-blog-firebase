@@ -14,6 +14,7 @@ import Loading from "../components/Loading";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Footer } from "../components/Footer";
+import { format } from "date-fns";
 
 const Article = () => {
   const params = useParams();
@@ -57,15 +58,20 @@ const Article = () => {
           <>
             <div className="flex items-center flex-col py-10 min-h-screen">
               <em-emoji id={articleData.emojiId} size="4em" />
+              <p className="font-bold text-sm mt-2">
+                {articleData.timeStamp
+                  ? format(articleData.timeStamp.toDate(), "yyyy年MM月dd日")
+                  : "date"}
+              </p>
               <h1 className="text-4xl font-bold mb-10">{articleData.title}</h1>
               <div className="flex flex-col justify-evenly md:flex-row">
                 <div className="w-[95vw] md:w-[55vw] bg-white p-5 md:p-16 rounded-2xl leading-loose mb-5 md:mb-0 md:mr-10">
-                  <div className="flex mb-10">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-10">
                     {articleData.topics.map((topic, index) => (
                       <Link
                         to={`/search/${topic}`}
                         key={index}
-                        className="border-2 py-1 px-3 mx-1 rounded-full border-gray-300 text-sm hover:bg-slate-300 duration-200"
+                        className="border-2 py-1 px-3 rounded-full border-gray-300 text-slate-500 text-sm hover:bg-slate-300 duration-200 text-center"
                       >
                         {topic}
                       </Link>

@@ -31,7 +31,7 @@ const CreatePost = () => {
     if (title !== "" && postText !== "") {
       const topicNames = [];
       value.forEach((element) => {
-        topicNames.push(element.name);
+        topicNames.push(element);
       });
 
       await addDoc(collection(db, "posts"), {
@@ -56,7 +56,7 @@ const CreatePost = () => {
   const updatePost = async () => {
     const topicNames = [];
     value.forEach((element) => {
-      topicNames.push(element.name);
+      topicNames.push(element);
     });
     if (title !== "" && postText !== "") {
       const updateData = doc(db, "posts", params.id);
@@ -64,6 +64,7 @@ const CreatePost = () => {
         title: title,
         postsText: postText,
         emojiId: emojiId,
+        timeStamp: serverTimestamp(),
         topics: [...topicNames],
         author: {
           username: auth.currentUser.displayName,
@@ -94,12 +95,13 @@ const CreatePost = () => {
   const getPosts = async () => {
     const q = doc(db, "posts", params.id);
     const data = (await getDoc(q)).data();
-    // console.log("Data fetched:", data);
     setTitle(data.title);
     setEmojiId(data.emojiId);
     setPostText(data.postsText);
     setValue(data.topics);
   };
+
+  console.log(`value=${value}`, value);
 
   return (
     <div className="w-screen min-h-screen bg-gray-100 flex flex-col items-center">

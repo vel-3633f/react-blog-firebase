@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-import topicSummary from "../data/topic";
+import { topicSummary } from "../data/topic";
 
 const SearchTopic = () => {
   return (
