@@ -65,7 +65,7 @@ const Article = () => {
                       <Link
                         to={`/search/${topic}`}
                         key={index}
-                        className="border-2 py-1 px-3 mx-1 rounded-full border-gray-300 text-sm"
+                        className="border-2 py-1 px-3 mx-1 rounded-full border-gray-300 text-sm hover:bg-slate-300 duration-200"
                       >
                         {topic}
                       </Link>
