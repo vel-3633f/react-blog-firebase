@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import { Footer } from "../components/Footer";
+import { format } from "date-fns";
 
 const Home = () => {
   const [postLists, setPostLists] = useState([]);
@@ -45,7 +46,14 @@ const Home = () => {
                         <p className="font-bold text-sm">
                           {postList.author.username}
                         </p>
-                        <p className="font-bold text-sm">date</p>
+                        <p className="font-bold text-xs mt-2">
+                          {postList.timeStamp
+                            ? format(
+                                postList.timeStamp.toDate(),
+                                "yyyy年MM月dd日"
+                              )
+                            : "date"}
+                        </p>
                       </div>
                     </div>
                   </Link>

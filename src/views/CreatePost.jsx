@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -26,12 +33,13 @@ const CreatePost = () => {
       value.forEach((element) => {
         topicNames.push(element.name);
       });
-      console.log(topicNames);
+
       await addDoc(collection(db, "posts"), {
         uid: uuidv4(),
         title: title,
         postsText: postText,
         emojiId: emojiId,
+        timeStamp: serverTimestamp(),
         topics: [...topicNames],
         author: {
           username: auth.currentUser.displayName,
