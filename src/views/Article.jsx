@@ -88,7 +88,10 @@ const Article = () => {
                   <p className="font-bold mb-5">
                     {articleData.author.username}
                   </p>
-                  <HeartButton />
+                  <HeartButton
+                    heartNum={articleData.heartNum}
+                    id={articleData.id}
+                  />
                   {isUser ? (
                     <>
                       <button

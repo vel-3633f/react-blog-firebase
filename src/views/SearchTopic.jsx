@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { topicSummary } from "../data/topic";
+import { motion } from "framer-motion";
 
 const SearchTopic = () => {
   return (
@@ -8,7 +9,7 @@ const SearchTopic = () => {
       <NavBar />
       <div className="p-10 place-center flex-col">
         <h1 className="font-bold text-lg mb-10">人気のトピック</h1>
-        <div className="grid grid-cols-2  sm:grid-cols-4 gap-5">
+        <motion.div className="grid grid-cols-2  sm:grid-cols-4 gap-5" >
           {topicSummary.map((topic) => {
             return (
               <>
@@ -22,7 +23,7 @@ const SearchTopic = () => {
               </>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </>
   );
