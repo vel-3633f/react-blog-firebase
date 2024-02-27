@@ -15,6 +15,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Footer } from "../components/Footer";
 import { format } from "date-fns";
+import HeartButton from "../components/HeartButton";
 
 const Article = () => {
   const params = useParams();
@@ -83,14 +84,15 @@ const Article = () => {
                     </Markdown>
                   </div>
                 </div>
-                <div className="w-[95vw] md:w-[20vw] bg-white h-56 p-5 rounded-2xl flex flex-col items-center">
+                <div className="w-[95vw] md:w-[20vw] bg-white md:h-[320px] p-5 rounded-2xl flex flex-col items-center">
                   <p className="font-bold mb-5">
                     {articleData.author.username}
                   </p>
+                  <HeartButton />
                   {isUser ? (
                     <>
                       <button
-                        className="bg-blue-400 hover:bg-blue-300 text-white rounded px-16 md:px-10 py-2 mb-10"
+                        className="bg-blue-400 hover:bg-blue-300 text-white rounded px-16 md:px-10 py-2 mb-5"
                         onClick={() => handleEdit(articleData.id)}
                       >
                         編集
