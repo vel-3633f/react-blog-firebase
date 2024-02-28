@@ -42,6 +42,7 @@ const CreatePost = () => {
         timeStamp: serverTimestamp(),
         topics: [...topicNames],
         heartNum: 0,
+        comments: [],
         author: {
           username: auth.currentUser.displayName,
           id: auth.currentUser.uid,

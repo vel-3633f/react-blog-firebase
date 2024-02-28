@@ -9,7 +9,16 @@ const SearchTopic = () => {
       <NavBar />
       <div className="p-10 place-center flex-col">
         <h1 className="font-bold text-lg mb-10">人気のトピック</h1>
-        <motion.div className="grid grid-cols-2  sm:grid-cols-4 gap-5" >
+        <motion.div
+          className="grid grid-cols-2  sm:grid-cols-4 gap-5"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.1,
+            duration: 0.8,
+            ease: "easeOut",
+          }}
+        >
           {topicSummary.map((topic) => {
             return (
               <>

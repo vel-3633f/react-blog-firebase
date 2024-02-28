@@ -16,6 +16,7 @@ import remarkGfm from "remark-gfm";
 import { Footer } from "../components/Footer";
 import { format } from "date-fns";
 import HeartButton from "../components/HeartButton";
+import Comment from "../components/Comment";
 
 const Article = () => {
   const params = useParams();
@@ -112,6 +113,7 @@ const Article = () => {
                   )}
                 </div>
               </div>
+              <Comment comments={articleData.comments} id={articleData.id} />
             </div>
             <Footer />
           </>

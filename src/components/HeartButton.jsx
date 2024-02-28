@@ -17,18 +17,20 @@ const HeartButton = ({ heartNum, id }) => {
     setUpdatedHeartNum(updatedHeartNum + 1);
   };
   return (
-    <motion.button
-      className="place-center p-3 bg-red-500 text-white rounded-lg mb-10 min-w-[100px] "
-      whileTap={{
-        scale: 1.1,
-        backgroundColor: "#FDE5E5",
-        color: "rgb(239 68 68)",
-      }}
-      onClick={heartPlus}
-      disabled={isClicked}
-    >
-      ♥ {updatedHeartNum}
-    </motion.button>
+    <>
+      <motion.button
+        className="place-center p-3 bg-red-500 text-white rounded-lg mb-10 min-w-[100px] "
+        whileTap={{
+          scale: 1.1,
+          backgroundColor: "#FDE5E5",
+          color: "rgb(239 68 68)",
+        }}
+        onClick={heartPlus}
+        disabled={isClicked}
+      >
+        ♥ {updatedHeartNum}
+      </motion.button>
+    </>
   );
 };
 
