@@ -113,7 +113,11 @@ const Article = () => {
                   )}
                 </div>
               </div>
-              <Comment comments={articleData.comments} id={articleData.id} />
+              <Comment
+                comments={articleData.comments}
+                id={articleData.id}
+                uid={articleData.uid}
+              />
             </div>
             <Footer />
           </>

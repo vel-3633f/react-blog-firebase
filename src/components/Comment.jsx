@@ -2,8 +2,10 @@ import { Timestamp, doc, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../firebase";
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
-const Comment = ({ comments, id }) => {
+const Comment = ({ comments, id, uid }) => {
+  const navigate = useNavigate();
   const [commentText, setCommentText] = useState("");
   const [commentUser, setCommentUser] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +23,8 @@ const Comment = ({ comments, id }) => {
         comments: sendComments,
       });
       setError("");
+      setCommentText("");
+      setCommentUser("");
       window.location.reload();
     } else {
       setError("※入力に不備があります");
